@@ -1,0 +1,19 @@
+body {
+    font-family: Arial, sans-serif;
+}
+
+.message {
+    margin-top: 10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.valid {
+    background-color: #DFF0D8;
+    color: #3C763D;
+}
+
+.invalid {
+    background-color: #F2DEDE;
+    color: #A94442;
+}
