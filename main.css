@@ -1,0 +1,48 @@
+    body {
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+    }
+    
+    #app {
+        max-width: 600px;
+        margin: 50px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        text-align: center; /* Centraliza o conteúdo */
+    }
+    
+    form {
+        margin-bottom: 20px;
+    }
+    
+    button {
+        background-color: #3498db; /* Cor azul para o botão */
+        color: #000000;
+        font-weight: bold;
+        font-size: 15px;
+        border: solid black 1px;
+        padding: 8px 16px;
+        cursor: pointer;
+        transition: background-color 0.3s; /* Adiciona transição para a cor de fundo */
+    }
+    
+    button:hover {
+        background-color: #2980b9; /* Cor mais clara ao passar o mouse */
+    }
+    
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    
+    li {
+        cursor: pointer;
+        margin-bottom: 8px;
+    }
+    
+    li.completed {
+        text-decoration: line-through;
+    }
+    
