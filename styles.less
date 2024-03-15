@@ -1,0 +1,145 @@
+// Variáveis
+@font-family: Roboto, sans-serif;
+@primary-color: #182C61;
+@secondary-color: #44bd32;
+@secondary-color-hover: #4cd137;
+@background-color: #f5f6fa;
+@max-width: 1024px;
+
+// Mapa de Mídias
+@media-map: {
+    sm: ~"screen and (max-width: 767px)",
+    md: ~"screen and (max-width: 1023px)"
+};
+
+// Escapamentos
+.escape(@string) {
+    e("@{string}");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: @font-family;
+}
+
+body {
+    background-color: @background-color;
+}
+
+li {
+    list-style: none;
+}
+
+.container {
+    max-width: @max-width;
+    width: 100%;
+    margin: 0 auto;
+}
+
+header {
+    background-color: @primary-color;
+    position: sticky;
+    top: 0;
+    left: 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 0;
+}
+
+.menu {
+    display: flex;
+}
+
+.menu li {
+    font-weight: bold;
+    margin-left: 24px;
+}
+
+.menu li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+section {
+    padding: 56px 0;
+}
+
+.products {
+    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 32.66%);
+    column-gap: 1%;
+    row-gap: 4%;
+    width: 100%;
+}
+
+.product-item img {
+    width: 100%;
+    border-radius: 16px;
+}
+
+.product-button {
+    display: block;
+    background-color: @secondary-color;
+    color: #fff;
+    text-align: center;
+    padding: 8px 0;
+    border-radius: 8px;
+    margin-top: 8px;
+    text-decoration: none;
+}
+
+.product-button:hover {
+    background-color: @secondary-color-hover;
+}
+
+// Loop para aplicar estilos baseados no mapa de mídias
+.loop-mq(@map) {
+    .media-loop(@i: 1) when (@i <= length(@map)) {
+        @key: extract(@map, @i);
+        @value: extract(@map, @key);
+        @media @value {
+            .loop-mq-styles(@key);
+        }
+        .media-loop(@i + 1);
+    }
+    .media-loop(@_) {}
+}
+
+.loop-mq-styles(@key) {
+    @media: @media-map[@key];
+    @rules: {
+        .container {
+            max-width: 80%;
+        }
+        .products {
+            grid-template-columns: repeat(2, 48.5%);
+            column-gap: 3%;
+        }
+    };
+    .apply-styles(@rules);
+}
+
+.apply-styles(@styles) {
+    .each(@styles);
+    .each(@map) {
+        .property(@map);
+    }
+}
+
+.property(@pair) {
+    .name { 
+        @key: extract(@pair, 1);
+        @value: extract(@pair, 2);
+        @{key}: @value;
+    }
+}
+
+// Chamando o loop de mídias
+.loop-mq(@media-map);
